@@ -8,7 +8,6 @@ router.get('/', async (req, res) => {
     let filteredCountries = [];
     let search = req.query.name;
     const countries = await getData();
-    console.log(countries)
     let loaded = await Country.findAll();
     try {
         (loaded.length != countries.length) ? (countries.map((c) => {
@@ -64,7 +63,6 @@ router.get('/:id', async (req, res) => {
                 model:Activity
             }
         })
-        console.log(country)
     } catch (error) {
         console.log(error)
     }
