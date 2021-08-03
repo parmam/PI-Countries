@@ -25,22 +25,27 @@ router.get('/', async (req, res) => {
             })
         })) 
         :(console.log(loaded))
-        loaded = await Country.findAll({
-            include:{
-                model:Activity
-            }
-        });
         if(search === undefined && loaded){
+            loaded = await Country.findAll({
+                include:{
+                    model:Activity
+                }
+            });
             filteredCountries = loaded
         }
         if(search && loaded){
-            console.log(loaded)
-            filteredCountries = loaded.filter((c) => {
-                if(c.name.toLowerCase().includes(search.toLowerCase)){
-                    console.log(c)
-                    return c
+            loaded = await Country.findAll({
+                where:{
+                    name:{
+                        [Op.iLike]: "%" + search + "%"
+                    }
+                },
+                include:{
+                    model:Activity
                 }
-            })
+            });
+            filteredCountries = loaded
+            console.log(filteredCountries)
         } 
     } catch (error) {
         console.log(error);

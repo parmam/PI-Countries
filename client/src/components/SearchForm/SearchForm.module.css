@@ -1,0 +1,21 @@
+body{
+padding: 15px;
+}
+.container{
+    margin: auto;
+    min-height: 100px;
+    max-height: 100px;
+    min-width: 250px;
+    max-width: 250px;
+    padding: 20px;
+    background-color: bisque;
+}
+input, label{
+    display: flex;
+    margin: 0px 0px 15px 20px;
+    width: 200px;
+}
+button{
+    margin: 5px 24px 0px 0px;
+    float: right;
+}

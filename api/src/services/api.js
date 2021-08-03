@@ -25,7 +25,6 @@ const getData = async () => {
     } catch (error) {
         console.log(error);
     }
-    console.log(countries)
     return countries
 }
 

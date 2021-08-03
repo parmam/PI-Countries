@@ -1,0 +1,26 @@
+.cardContainer{
+
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: minmax(300px, auto) ;
+    gap: 20px;
+    padding: 20px;
+
+}
+
+
+.cardContainer > div{
+    display:flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+
+}
+.cardContainer > div:hover{
+    filter: opacity(0.9);
+    transform: scale(1.04)
+}
+

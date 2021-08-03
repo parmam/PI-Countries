@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     dificulty:{
-      type:DataTypes.STRING,
+      type:DataTypes.INTEGER,
       allowNull:false
     },
     duration:{
@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       allowNull:false
     },
     season:{
-      type:DataTypes.STRING,
+      type:DataTypes.ARRAY(DataTypes.STRING),
       allowNull:false
     }
   },{
