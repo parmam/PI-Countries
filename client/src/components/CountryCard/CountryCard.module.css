@@ -1,17 +1,32 @@
-img{
+.countryImg{
     width: 100%;
     height: 80%;
     object-fit: cover;
 
 }
-p{
+.countryText{
     margin-left: 5px;
     color: rgb(245, 245, 245);
 }
-button{
+.detailsBtn{
     width: 80px;
     height: 40px;
     margin: auto;
     padding: 10px;
     margin-bottom: 3px;
+}
+
+
+.cardContainer{
+    display:flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cardContainer:hover{
+    filter: opacity(0.9);
+    transform: scale(1.04)
 }

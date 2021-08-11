@@ -17,11 +17,31 @@ const CountriesList = () => {
             setFlag(0)
         }
         setCountries(allCountries)
-        console.log(countries)
     },[dispatch, countries, allCountries])
 
     return(
         <React.Fragment >
+  
+
+            <div className={styles.filterButton}>
+                <select name="" id="" className={styles.filterBtn}>
+                    <option value="DEFAULT">DEFAULT</option>
+                    <option value="A-Z">A-Z</option>
+                    <option value="Z-A">Z-A</option>
+                </select>
+                <select 
+                onChange="" 
+                id="" 
+                className={styles.filterBtn}
+                >
+                    <option value="DEFAULT">DEFAULT</option>
+                    <option value="ASC">ASC</option>
+                    <option value="DESC">DESC</option>
+                </select>
+            </div>
+
+
+
             <div className={styles.cardContainer}>
                 {(!countries.length) 
                 ? <p>loading countries...</p>
@@ -35,6 +55,7 @@ const CountriesList = () => {
                     />
                     ))}
             </div>
+
         </React.Fragment>
     )
 }

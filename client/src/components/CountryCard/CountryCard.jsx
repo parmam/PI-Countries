@@ -12,7 +12,7 @@ const CountryCard = ({name, continent, img, id}) => {
                 <p className={styles.countryText}>Country name: {name}</p>
                 <p className={styles.countryText}>Continent: {continent}</p>
                 <Link to={`/country/${id}`}>
-                    <button type="button">Details</button>
+                    <button type="button" className={styles.detailsBtn}>Details</button>
                 </Link>
             </div>
         </React.Fragment>
