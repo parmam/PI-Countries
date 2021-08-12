@@ -13,7 +13,8 @@
     height: 40px;
     margin: auto;
     padding: 10px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
+    margin-right: 5px;
 }
 
 
@@ -28,5 +29,6 @@
 
 .cardContainer:hover{
     filter: opacity(0.9);
-    transform: scale(1.04)
+    transform: scale(1.04);
+    background-color:rgb(57, 56, 56);
 }

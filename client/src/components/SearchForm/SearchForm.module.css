@@ -3,19 +3,36 @@ padding: 15px;
 }
 .container{
     margin: auto;
-    min-height: 100px;
+    min-height: 100x;
     max-height: 100px;
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 350px;
+    max-width: 350px;
     padding: 20px;
-    background-color: bisque;
+    background-color:rgb(57, 56, 56);
+    display: flex;
+    justify-content: center;
 }
-input, label{
+.li{
     display: flex;
     margin: 0px 0px 15px 20px;
     width: 200px;
 }
-button{
-    margin: 5px 24px 0px 0px;
-    float: right;
+.formTitle {
+    display: flex;
+    justify-content: center;
+    margin: 0px 0px 15px 20px;
 }
+.buttonCtn{
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.formBtn{
+        margin: 5px 10px 10px 10px;
+        color: black;
+    
+}
+

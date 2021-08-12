@@ -9,6 +9,10 @@ const CountriesList = () => {
     const dispatch = useDispatch()
     const [flag, setFlag] = useState(1)
     const [countries, setCountries] = useState([])
+    const [contienentFilter, setContinentFilter] = useState('DEFAULT')
+    const [activityFilter, setActivityFilter] = useState('DEFAULT')
+    const [populationOrder, setPopulationOrder] = useState('DEFAULT')
+    const [alphabethicOrder, setAlphabethicOrder] = useState('A-Z')
 
 
     useEffect(() =>{
@@ -17,26 +21,81 @@ const CountriesList = () => {
             setFlag(0)
         }
         setCountries(allCountries)
-    },[dispatch, countries, allCountries])
+    },[dispatch, countries, allCountries, alphabethicOrder, populationOrder, activityFilter, contienentFilter])
+
+
+
+    const orderByAz = (e) => {
+        setAlphabethicOrder(e.target.value)
+        console.log(alphabethicOrder)
+    }
+
+    const orderByPopulation = (e) => {
+        setPopulationOrder(e.target.value)
+        console.log(populationOrder)
+    }
+
+    const filterByActivity = (e) => {
+        setActivityFilter(e.target.value)
+        console.log(activityFilter)
+    }
+
+    const filterByContinent = (e) => {
+        setContinentFilter(e.target.value)
+        console.log(contienentFilter)
+    }
+
+
+
+ 
 
     return(
         <React.Fragment >
   
 
-            <div className={styles.filterButton}>
-                <select name="" id="" className={styles.filterBtn}>
-                    <option value="DEFAULT">DEFAULT</option>
+            <div className={styles.filtersCtn}>
+                <select 
+                name="" 
+                id="" 
+                className={styles.filterBtn}
+                onChange={(e) => orderByAz(e)}
+                >
                     <option value="A-Z">A-Z</option>
                     <option value="Z-A">Z-A</option>
                 </select>
+                
                 <select 
                 onChange="" 
                 id="" 
                 className={styles.filterBtn}
+                onChange={(e) => orderByPopulation(e)}
                 >
                     <option value="DEFAULT">DEFAULT</option>
                     <option value="ASC">ASC</option>
                     <option value="DESC">DESC</option>
+                </select>
+
+                <select 
+                name="" 
+                id="" 
+                className={styles.filterBtn}
+                onChange={(e) => filterByContinent(e)}
+                >
+                    <option value="DEFAULT">ALL CONTINENTS</option>
+                    <option value="AFRICA">AFRICA</option>
+                    <option value="AMERICA">AMERICA</option>
+                    <option value="ASIA">ASIA</option>
+                    <option value="EUROPE">EUROPE</option>
+                    <option value="OCAENIA">OCEANIA</option>
+                </select>
+
+                <select 
+                name="" 
+                id="" 
+                className={styles.filterBtn}
+                onChange={(e) => filterByActivity(e)}
+                >
+                    <option value="DEFAULT">DEFAULT</option>
                 </select>
             </div>
 

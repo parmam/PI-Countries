@@ -1,0 +1,33 @@
+.container{
+    position:fixed;
+    z-index:999;
+    top:0;
+    left:0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0,0,0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.opened{
+    display:flex;
+}
+
+.content{
+    min-width: 300px;
+    max-width: 800px;
+    min-height: 400px;
+    max-height: 600px;
+    position:relative;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.closeModalBtn{
+    position:absolute;
+    top: 1rem;
+    right: 1rem;
+}
