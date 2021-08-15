@@ -10,8 +10,8 @@ const Home = () => {
     return (
         <React.Fragment>
 
-            <SearchForm/>
-            <CountriesList/>
+            <SearchForm />
+            <CountriesList />
 
         </React.Fragment>
     )

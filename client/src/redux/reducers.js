@@ -1,9 +1,10 @@
-import {GET_COUNTRIES, GET_COUNTRY_DETAILS} from './actions'
+import {GET_COUNTRIES, GET_COUNTRY_DETAILS, CHANGE_ORDER, FILTERS} from './actions'
 
 
 const initialState = {
     allCountries : [],
-    countryDetails: {}  
+    countryDetails: {},
+    allFilters:{}
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -18,7 +19,53 @@ export default function rootReducer (state = initialState, action) {
                 ...state,
                 countryDetails: action.payload
             }
-            
+        case CHANGE_ORDER:
+
+            const {alphabethicOrder, populationOrder} = {...action.payload}
+            console.log(populationOrder,' population' , alphabethicOrder, ' alphabethic')
+            if (alphabethicOrder === 'A-Z' && populationOrder === 'DEFAULT'){
+                state.allCountries.sort((a, b) => {
+                    if(a.name < b.name) return -1
+                    if(a.name > b.name) return 1
+                    return 0
+                                 
+                })
+            }
+            if(alphabethicOrder === 'Z-A' && populationOrder === 'DEFAULT'){
+                state.allCountries.sort((a, b) => {
+                    if(a.name > b.name) return -1
+                    if(a.name < b.name) return 1
+                    return 0
+                                 
+                })
+            }
+            if(populationOrder === 'ASC' && alphabethicOrder === 'DEFAULT'){
+                state.allCountries.sort((a, b) => {
+                    if(a.population < b.population) return -1
+                    if(a.population > b.population) return 1
+                    return 0
+                                 
+                })
+            }
+            if (populationOrder === 'DESC' && alphabethicOrder === 'DEFAULT') {
+                state.allCountries.sort((a, b) => {
+                    if(a.population > b.population) return -1
+                    if(a.population < b.population) return 1
+                    return 0
+                                 
+                })
+            }
+
+            return{
+                ...state
+            }
+
+        case FILTERS: 
+        console.log(action.payload)
+            return{
+                ...state,
+                allFilters: action.payload
+        }
         default: 
             return state
         

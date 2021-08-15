@@ -1,6 +1,6 @@
 import styles from './SearchForm.module.css'
 import React, {useState} from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCountries } from '../../redux/actions';
 import { useModal } from '../../hooks/useModal';
 import Modal from '../Modal/Modal';
@@ -11,7 +11,7 @@ const SearchForm = () => {
 
     const [isOpenActivitiesModal, openActivitiesModal, closeActivitiesModal] = useModal(false)
     const [search, setSearch] = useState('')
-
+    const filters = useSelector(store=> store.allFilters)
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
@@ -21,7 +21,7 @@ const SearchForm = () => {
     const handleChange = (e) => {
         setSearch(e.target.value)
     }
-
+    
     return (
         <React.Fragment>
             <div className={styles.container}>
