@@ -26,17 +26,18 @@ const AddActivities = () => {
         console.log(modalCountries)
 
         let activity = {
-            name : input.name,
+            name : input.name.toLowerCase().trim(),
             duration : input.duration,
             dificulty : input.dificulty,
             countries : selectedCountries,
             season : activeSeasons
         }
         console.log(activity)
-        
+        console.log(selectedCountries)
+        console.log(modalCountries)
         dispatch(activitiesPost(activity))
-        
-        setModalContries([...modalCountries, selectedCountries])
+        alert('activity "' + input.name + '" added sucessfully')
+        setModalContries(modalCountries.concat(selectedCountries).sort())
         setSelectedCountries([])
         setFormKey(formKey + 1)
     }

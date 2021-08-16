@@ -1,9 +1,10 @@
 import axios from 'axios';
-export const FILTERS = 'FILTERS';
+
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_COUNTRY_DETAILS = 'GET_COUNTRY_DETAILS';
 export const CHANGE_ORDER = 'CHANGE_ORDER';
 export const ACTIVITY_POST = 'ACTIVITY_POST';
+export const ACTIVITY_GET = "ACTIVITY_GET";
 
 export const getCountries = (search, activityFilter, contienentFilter, alphabethicOrder, populationOrder) => {
     return(dispatch) => {
@@ -34,23 +35,7 @@ export const getCountryDetails = (id) => {
         })
     }
 }
-export const orderBy = (alphabethicOrder, populationOrder) => {
-    return (dispatch) => {
-        dispatch({
-            type: CHANGE_ORDER,
-            payload: {alphabethicOrder, populationOrder}
-        })
 
-    }
-}
-// export const allFilters = (activityFilter, contienentFilter) => {
-//     return (dispatch) => {
-//         dispatch({
-//             type: FILTERS,
-//             payload: {activityFilter, contienentFilter}
-//         })
-//     }
-// }
 export const activitiesPost = (activity) => {
     return(dispatch) => {
         axios.post(`http://localhost:3001/activity`, {activity})
@@ -60,6 +45,20 @@ export const activitiesPost = (activity) => {
                 payload: response
             })
         })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export const activitiesGet = () => {
+    return (dispatch) =>{
+        axios.get(`http://localhost:3001/activity`)
+        .then(response =>
+            dispatch({
+                type:ACTIVITY_GET,
+                payload: response.data
+        }))
         .catch(error => {
             console.log(error)
         })

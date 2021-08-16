@@ -1,26 +1,25 @@
 import styles from './SearchForm.module.css'
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountries, allFilters, orderBy } from '../../redux/actions';
+import { getCountries, activitiesGet} from '../../redux/actions';
 import { useModal } from '../../hooks/useModal';
 import Modal from '../Modal/Modal';
 import AddActivities from '../AddActivities/AddActivities';
 
 
 const SearchForm = () => {
-
     const [isOpenActivitiesModal, openActivitiesModal, closeActivitiesModal] = useModal(false)
-    const [contienentFilter, setContinentFilter] = useState('DEFAULT')
-    const [activityFilter, setActivityFilter] = useState('DEFAULT')
-    const [populationOrder, setPopulationOrder] = useState('DEFAULT')
-    const [alphabethicOrder, setAlphabethicOrder] = useState('A-Z')
-    const [search, setSearch] = useState('')
-    const [countries, setCountries] = useState([])
-    const [flag, setFlag] = useState(1)
-
-
+    const [contienentFilter, setContinentFilter] = useState('DEFAULT');
+    const [activityFilter, setActivityFilter] = useState('DEFAULT');
+    const [populationOrder, setPopulationOrder] = useState('DEFAULT');
+    const [alphabethicOrder, setAlphabethicOrder] = useState('A-Z');
+    const [search, setSearch] = useState('');
+    const [flag, setFlag] = useState(1);
+    const [activities, setActivities] = useState([]);
+    
+    
+    const allActivities = useSelector(store => store.allActivities)
     const allCountries = useSelector(store => store.allCountries)
-    const filters = useSelector(store=> store.allFilters)
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
@@ -59,10 +58,12 @@ const SearchForm = () => {
 
         if(flag === 1) {
             dispatch(getCountries(search, activityFilter, contienentFilter, alphabethicOrder, populationOrder))
+            dispatch(activitiesGet())
             setFlag(0)
         }
+        setActivities(allActivities)
 
-    },[dispatch, flag, alphabethicOrder, populationOrder, activityFilter, contienentFilter, allCountries, countries])
+    },[dispatch, flag, alphabethicOrder, populationOrder, activityFilter, contienentFilter, allCountries, allActivities, activities])
     
     return (
         <React.Fragment>
@@ -132,6 +133,13 @@ const SearchForm = () => {
                 onChange={(e) => filterByActivity(e)}
                 >
                     <option value="DEFAULT">DEFAULT</option>
+                    {
+                        activities.map((a) => {
+                            return(
+                                    <option value={a}>{a.toUpperCase()}</option>
+                                )
+                    })
+                    }
                 </select>
             </div>
         </React.Fragment>

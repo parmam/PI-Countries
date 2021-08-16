@@ -5,7 +5,6 @@ import CountryCard from '../CountryCard/CountryCard';
 
 const CountriesList = () => {
     const allCountries = useSelector(store => store.allCountries)
-    const allFilters = useSelector(store => store.allFilters)
     const [countries, setCountries] = useState([])
     const [flag, setFlag] = useState(2)
     //pagination
@@ -29,7 +28,7 @@ const CountriesList = () => {
         }
     }
     useEffect(() => {
-        if(flag === 2 || countries !== allCountries && allFilters ) {
+        if(flag === 2 || countries !== allCountries) {
             setCountries(allCountries)
             setPage(1)
             setFirst(0)
@@ -42,7 +41,7 @@ const CountriesList = () => {
             setFlag(0)
         }
 
-    },[countries, allCountries, allFilters, first, last, page, flag, countriesPerPage])
+    },[countries, allCountries, first, last, page, flag, countriesPerPage])
 
     return(
         <React.Fragment>
