@@ -19,7 +19,6 @@ const AddActivities = () => {
         name : "",
         duration:"",
         dificulty : "",
-
     })
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,7 +40,6 @@ const AddActivities = () => {
         setSelectedCountries([])
         setFormKey(formKey + 1)
     }
-
     const handleChange = (e) => {
 
             setInput({
@@ -58,15 +56,11 @@ const AddActivities = () => {
         if(!e.target.checked){
             setActiveSeasons(activeSeasons.filter(s => s !== e.target.value))
         }
-
-
     }
-
     const addCountry = (e) => {
         setBridge(e.target.value)    
         setFlag(1)
     }
-
     const removeCountry = (e) => {
         setBridge(e.target.value)
         setFlag(2)

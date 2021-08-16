@@ -11,58 +11,50 @@ const initialState = {
 export default function rootReducer (state = initialState, action) {
     switch (action.type) {
         case GET_COUNTRIES: 
+        const {data, alphabethicOrder, populationOrder} = {...action.payload}
+        console.log(populationOrder,' population' , alphabethicOrder, ' alphabethic')
+        if (alphabethicOrder === 'A-Z' && populationOrder === 'DEFAULT'){
+            data.sort((a, b) => {
+                if(a.name < b.name) return -1
+                if(a.name > b.name) return 1
+                return 0
+                             
+            })
+        }
+        if(alphabethicOrder === 'Z-A' && populationOrder === 'DEFAULT'){
+            data.sort((a, b) => {
+                if(a.name > b.name) return -1
+                if(a.name < b.name) return 1
+                return 0
+                             
+            })
+        }
+        if(populationOrder === 'ASC' && alphabethicOrder === 'DEFAULT'){
+            data.sort((a, b) => {
+                if(a.population < b.population) return -1
+                if(a.population > b.population) return 1
+                return 0
+                             
+            })
+        }
+        if (populationOrder === 'DESC' && alphabethicOrder === 'DEFAULT') {
+            data.sort((a, b) => {
+                if(a.population > b.population) return -1
+                if(a.population < b.population) return 1
+                return 0
+                             
+            })
+        }
             return{
                 ...state,
-                allCountries: action.payload
+                allCountries: data
             }  
         case GET_COUNTRY_DETAILS:
             return {
                 ...state,
                 countryDetails: action.payload
             }
-        case CHANGE_ORDER:
-
-            const {alphabethicOrder, populationOrder} = {...action.payload}
-            console.log(populationOrder,' population' , alphabethicOrder, ' alphabethic')
-            if (alphabethicOrder === 'A-Z' && populationOrder === 'DEFAULT'){
-                state.allCountries.sort((a, b) => {
-                    if(a.name < b.name) return -1
-                    if(a.name > b.name) return 1
-                    return 0
-                                 
-                })
-            }
-            if(alphabethicOrder === 'Z-A' && populationOrder === 'DEFAULT'){
-                state.allCountries.sort((a, b) => {
-                    if(a.name > b.name) return -1
-                    if(a.name < b.name) return 1
-                    return 0
-                                 
-                })
-            }
-            if(populationOrder === 'ASC' && alphabethicOrder === 'DEFAULT'){
-                state.allCountries.sort((a, b) => {
-                    if(a.population < b.population) return -1
-                    if(a.population > b.population) return 1
-                    return 0
-                                 
-                })
-            }
-            if (populationOrder === 'DESC' && alphabethicOrder === 'DEFAULT') {
-                state.allCountries.sort((a, b) => {
-                    if(a.population > b.population) return -1
-                    if(a.population < b.population) return 1
-                    return 0
-                                 
-                })
-            }
-
-            return{
-                ...state
-            }
-
         case FILTERS: 
-        console.log(action.payload)
             return{
                 ...state,
                 allFilters: action.payload

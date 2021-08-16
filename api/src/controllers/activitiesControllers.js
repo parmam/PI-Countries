@@ -1,8 +1,6 @@
 const { Router } = require("express");
 const { Country, Activity, country_activity } = require('../db');
 const { Op, where } = require('sequelize');
-
-
 const router = Router();
 
 router.post('/', async (req, res) => {
@@ -16,9 +14,7 @@ router.post('/', async (req, res) => {
             }
         }
     })
-
     let countriesIds = selectedCountries.map(c => { return c.id })
-
     try {
         let activity = await Activity.findOrCreate({
             where:{
@@ -43,9 +39,6 @@ router.post('/', async (req, res) => {
         console.log(error)
     }
 })
-
-
-
 router.get('/', async (req, res) => {
     try {
         let activities = await Activity.findAll()

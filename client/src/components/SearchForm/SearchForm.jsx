@@ -30,46 +30,35 @@ const SearchForm = () => {
     const handleChange = (e) => {
         setSearch(e.target.value)
     }
-
-
-
     const orderByAz = (e) => {
         setAlphabethicOrder(e.target.value)
         setPopulationOrder('DEFAULT')
         document.getElementById('POPULATION').value = 'DEFAULT'
         console.log(populationOrder)
         console.log(alphabethicOrder)
-        setFlag(2)
+        setFlag(1)
     }
-
     const orderByPopulation = (e) => {
         setPopulationOrder(e.target.value)
         setAlphabethicOrder('DEFAULT')
         document.getElementById('AZ').value = 'DEFAULT'
         console.log(populationOrder)
-        setFlag(2)
+        setFlag(1)
     }
-
     const filterByActivity = (e) => {
         setActivityFilter(e.target.value)
         console.log(activityFilter)
         setFlag(1)
     }
-
     const filterByContinent = (e) => {
         setContinentFilter(e.target.value)
         console.log(contienentFilter)
         setFlag(1)
     }
-
-
     useEffect(() => {
-        if(flag === 2){
-            dispatch(orderBy(alphabethicOrder, populationOrder))
-            setFlag(0)
-        }
+
         if(flag === 1) {
-            dispatch(getCountries(search, activityFilter, contienentFilter))
+            dispatch(getCountries(search, activityFilter, contienentFilter, alphabethicOrder, populationOrder))
             setFlag(0)
         }
 
@@ -98,8 +87,7 @@ const SearchForm = () => {
                         </button>
                         <Modal isOpen={isOpenActivitiesModal} closeModal={closeActivitiesModal}>
                             <AddActivities />
-                        </Modal>
-                        
+                        </Modal>            
                     </div>
                 </form>
             </div>
@@ -113,8 +101,7 @@ const SearchForm = () => {
                     <option value="DEFAULT">DEFAULT</option>
                     <option value="A-Z">A-Z</option>
                     <option value="Z-A">Z-A</option>
-                </select>
-                
+                </select>       
                 <select 
                 onChange="" 
                 id="POPULATION" 
@@ -125,7 +112,6 @@ const SearchForm = () => {
                     <option value="ASC">ASC</option>
                     <option value="DESC">DESC</option>
                 </select>
-
                 <select 
                 name="" 
                 id="" 
@@ -139,7 +125,6 @@ const SearchForm = () => {
                     <option value="Europe">EUROPE</option>
                     <option value="Oceania">OCEANIA</option>
                 </select>
-
                 <select 
                 name="" 
                 id="" 

@@ -14,7 +14,6 @@ const CountriesList = () => {
     const [first, setFirst] = useState(0)
     const [last, setLast] = useState(7)
     const [nPages, setNPages] = useState(0)
-
     const changePage = (e) => {
         if(e.target.name === "PREV" && page >= 1){
             setPage(page - 1);
@@ -30,12 +29,11 @@ const CountriesList = () => {
         }
     }
     useEffect(() => {
-        if(flag === 2 || countries !== allCountries && allFilters) {
-            
+        if(flag === 2 || countries !== allCountries && allFilters ) {
             setCountries(allCountries)
             setPage(1)
             setFirst(0)
-            setLast(7)
+            setLast(8)
             setFlag(1)
         }
         if(flag === 1){
@@ -78,6 +76,5 @@ const CountriesList = () => {
         </React.Fragment>
     )
 }
-
 
 export default CountriesList
