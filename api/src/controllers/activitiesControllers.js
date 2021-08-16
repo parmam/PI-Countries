@@ -18,9 +18,7 @@ router.post('/', async (req, res) => {
     })
 
     let countriesIds = selectedCountries.map(c => { return c.id })
-    console.log(countriesIds, 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC')
-    
-    console.log(countriesIds)
+
     try {
         let activity = await Activity.findOrCreate({
             where:{
@@ -47,5 +45,16 @@ router.post('/', async (req, res) => {
 })
 
 
+
+router.get('/', async (req, res) => {
+    try {
+        let activities = await Activity.findAll()
+        let activitiesArr = activities.map(a => a.name)
+        let noRepeat = new Set(activitiesArr)
+        res.send([...noRepeat])
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 module.exports = router;

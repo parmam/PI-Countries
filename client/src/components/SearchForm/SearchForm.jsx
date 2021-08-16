@@ -53,27 +53,26 @@ const SearchForm = () => {
     const filterByActivity = (e) => {
         setActivityFilter(e.target.value)
         console.log(activityFilter)
-        setFlag(2)
+        setFlag(1)
     }
 
     const filterByContinent = (e) => {
         setContinentFilter(e.target.value)
         console.log(contienentFilter)
-        setFlag(2)
+        setFlag(1)
     }
 
 
     useEffect(() => {
         if(flag === 2){
             dispatch(orderBy(alphabethicOrder, populationOrder))
-            dispatch(allFilters(activityFilter, contienentFilter))
             setFlag(0)
         }
         if(flag === 1) {
-            dispatch(getCountries(activityFilter, contienentFilter))
+            dispatch(getCountries(search, activityFilter, contienentFilter))
             setFlag(0)
         }
-        setCountries(allCountries)
+
     },[dispatch, flag, alphabethicOrder, populationOrder, activityFilter, contienentFilter, allCountries, countries])
     
     return (

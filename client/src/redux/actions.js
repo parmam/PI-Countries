@@ -9,9 +9,10 @@ export const ACTIVITY_POST = 'ACTIVITY_POST';
 export const getCountries = (search, activityFilter, contienentFilter) => {
     return(dispatch) => {
         let data = [];
-        console.log(contienentFilter)
-        axios.get(`http://localhost:3001/countries?name=${search}&continent=${contienentFilter}&activity=${activityFilter}`)
+        console.log(search)
+        axios.get(`http://localhost:3001/countries?name=${search}&activity=${activityFilter}&continent=${contienentFilter}`)
         .then(response => {
+            console.log(data)
             data = response.data
             dispatch({  
                 type: GET_COUNTRIES,
