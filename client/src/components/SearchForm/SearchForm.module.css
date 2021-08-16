@@ -36,3 +36,31 @@ padding: 15px;
     
 }
 
+.filtersCtn{
+    display: flex;
+    justify-content: center;
+    align-content: center;  
+    align-items: center;
+
+}
+
+@media (max-width: 700px) {
+    .filtersCtn{
+        flex-direction: column;
+    }
+}
+@media (min-width: 700px) {
+    .filtersCtn{
+        flex-direction: row;
+    }
+}
+
+
+.filterBtn{
+    margin: 10px 5px 0px 0px;
+    color:black;
+    text-align: center;
+    max-width: 135px;
+    min-width: 135px;
+    
+}
