@@ -7,8 +7,12 @@ const CountriesList = () => {
     const allCountries = useSelector(store => store.allCountries)
     const allFilters = useSelector(store => store.allFilters)
     const [countries, setCountries] = useState([])
+    //pagination
+    const [countriesPerPage, setCountriesPerPage] = useState([])
+    const [page, setPage] = useState(1)
 
-    useEffect(() =>{
+    useEffect(() => {
+        if(countries.length === 0)
         setCountries(allCountries)
     },[countries, allCountries, allFilters])
 

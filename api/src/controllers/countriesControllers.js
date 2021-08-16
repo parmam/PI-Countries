@@ -5,12 +5,15 @@ const { getData } = require('../services/api')
 const router = Router()
 
 router.get('/', async (req, res) => {
+    let allCountries = [];
     let filteredCountries = [];
-    let search = req.query.name;
+    const {name, continent, activity} = {...req.query}
+
     const countries = await getData();
     let loaded = await Country.findAll();
     try {
-        (loaded.length != countries.length) ? (countries.map((c) => {
+        (loaded.length != countries.length) 
+        ? (countries.map((c) => {
             Country.findOrCreate({
                 where:{
                     name:c.name,
@@ -25,32 +28,44 @@ router.get('/', async (req, res) => {
             })
         })) 
         :(console.log(loaded))
-        if(search === undefined && loaded){
+        if(name === "" && loaded){
             loaded = await Country.findAll({
                 include:{
                     model:Activity
                 }
             });
-            filteredCountries = loaded
+            allCountries = loaded
         }
-        if(search && loaded){
+        if(name && loaded){
             loaded = await Country.findAll({
                 where:{
                     name:{
-                        [Op.iLike]: "%" + search + "%"
+                        [Op.iLike]: "%" + name + "%"
                     }
                 },
                 include:{
                     model:Activity
                 }
             });
-            filteredCountries = loaded
-            console.log(filteredCountries)
+            allCountries = loaded
+
         } 
+        if(continent !== 'DEFAULT' && activity === 'DEFAULT'){
+            filteredCountries = allCountries.filter((c) => {
+                if (c.continent === continent) return c
+            })
+        }
+
+        if(continent === 'DEFAULT' && activity === 'DEFAULT'){
+            filteredCountries = allCountries
+        }
+
+        
+        res.send(filteredCountries);
+        console.log(req.query)
     } catch (error) {
         console.log(error);
     }
-    res.send(filteredCountries);
 })
 
 router.get('/:id', async (req, res) => {
@@ -68,10 +83,11 @@ router.get('/:id', async (req, res) => {
                 model:Activity
             }
         })
+        res.send(country)
+
     } catch (error) {
         console.log(error)
     }
-    res.send(country)
 })
 
 module.exports = router;

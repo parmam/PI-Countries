@@ -17,13 +17,15 @@ const SearchForm = () => {
     const [search, setSearch] = useState('')
     const [countries, setCountries] = useState([])
     const [flag, setFlag] = useState(1)
+
+
     const allCountries = useSelector(store => store.allCountries)
     const filters = useSelector(store=> store.allFilters)
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(getCountries(search))
+        dispatch(getCountries(search, activityFilter, contienentFilter))
     }
     const handleChange = (e) => {
         setSearch(e.target.value)
@@ -68,7 +70,7 @@ const SearchForm = () => {
             setFlag(0)
         }
         if(flag === 1) {
-            dispatch(getCountries())
+            dispatch(getCountries(activityFilter, contienentFilter))
             setFlag(0)
         }
         setCountries(allCountries)
@@ -132,11 +134,11 @@ const SearchForm = () => {
                 onChange={(e) => filterByContinent(e)}
                 >
                     <option value="DEFAULT">ALL CONTINENTS</option>
-                    <option value="AFRICA">AFRICA</option>
-                    <option value="AMERICA">AMERICA</option>
-                    <option value="ASIA">ASIA</option>
-                    <option value="EUROPE">EUROPE</option>
-                    <option value="OCAENIA">OCEANIA</option>
+                    <option value="Africa">AFRICA</option>
+                    <option value="Americas">AMERICA</option>
+                    <option value="Asia">ASIA</option>
+                    <option value="Europe">EUROPE</option>
+                    <option value="Oceania">OCEANIA</option>
                 </select>
 
                 <select 

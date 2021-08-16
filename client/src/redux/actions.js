@@ -1,35 +1,23 @@
-import axios from 'axios'
+import axios from 'axios';
 
-export const FILTERS = 'FILTERS'
-export const GET_COUNTRIES = 'GET_COUNTRIES'
-export const GET_COUNTRY_DETAILS = 'GET_COUNTRY_DETAILS'
-export const CHANGE_ORDER = 'CHANGE_ORDER'
+export const FILTERS = 'FILTERS';
+export const GET_COUNTRIES = 'GET_COUNTRIES';
+export const GET_COUNTRY_DETAILS = 'GET_COUNTRY_DETAILS';
+export const CHANGE_ORDER = 'CHANGE_ORDER';
+export const ACTIVITY_POST = 'ACTIVITY_POST';
 
-export const getCountries = (search) => {
+export const getCountries = (search, activityFilter, contienentFilter) => {
     return(dispatch) => {
-        let data = []
-        
-        if(search){
-            axios.get(`http://localhost:3001/countries?name=${search}`)
-            .then(response => {
-                data = response.data
-                dispatch({  
-                    type: GET_COUNTRIES,
-                    payload: data
-                })
+        let data = [];
+        console.log(contienentFilter)
+        axios.get(`http://localhost:3001/countries?name=${search}&continent=${contienentFilter}&activity=${activityFilter}`)
+        .then(response => {
+            data = response.data
+            dispatch({  
+                type: GET_COUNTRIES,
+                payload: data
             })
-        }
-        if(!search){
-            axios.get(`http://localhost:3001/countries`)
-            .then(response => {
-                data = response.data          
-                dispatch({  
-                    type: GET_COUNTRIES,
-                    payload: data
-                })
-            })
-        }
-
+        })
     }
 }
 
@@ -63,6 +51,22 @@ export const allFilters = (activityFilter, contienentFilter) => {
         dispatch({
             type: FILTERS,
             payload: {activityFilter, contienentFilter}
+        })
+    }
+}
+
+
+export const activitiesPost = (activity) => {
+    return(dispatch) => {
+        axios.post(`http://localhost:3001/activity`, {activity})
+        .then(response =>{
+            dispatch({
+                type: ACTIVITY_POST,
+                payload: response
+            })
+        })
+        .catch(error => {
+            console.log(error)
         })
     }
 }

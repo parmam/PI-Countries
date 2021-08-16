@@ -1,15 +1,17 @@
 import styles from './AddActivities.module.css';
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {activitiesPost} from '../../redux/actions'
 
 
 const AddActivities = () => {
     const allCountries = useSelector(store => store.allCountries);
 
     const dispatch = useDispatch();
-    const [flag, setFlag] = useState(0);
+    const [flag, setFlag] = useState(9);
     const [bridge, setBridge] = useState('');
     const [modalCountries, setModalContries] = useState([]);
+    const [countries, setCountries] = useState([])
     const [selectedCountries, setSelectedCountries] = useState([]);
     const [activeSeasons, setActiveSeasons] = useState([]);
     const [formKey, setFormKey] = useState(0);
@@ -21,6 +23,9 @@ const AddActivities = () => {
     })
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(selectedCountries)
+        console.log(modalCountries)
+
         let activity = {
             name : input.name,
             duration : input.duration,
@@ -29,10 +34,12 @@ const AddActivities = () => {
             season : activeSeasons
         }
         console.log(activity)
+        
+        dispatch(activitiesPost(activity))
+        
+        setModalContries([...modalCountries, selectedCountries])
+        setSelectedCountries([])
         setFormKey(formKey + 1)
-
-
-
     }
 
     const handleChange = (e) => {
@@ -66,28 +73,25 @@ const AddActivities = () => {
     }
 
     useEffect(() => {
-        if(modalCountries.length === 0){
-            setModalContries(allCountries.sort((a, b) => {
-                if(a.name < b.name) return -1
-                if(a.name > b.name) return 1
-                return 0
-                }                
-            ))
+        if(allCountries.length && !modalCountries.length){
+            setModalContries(allCountries.map((m) => {return m.name}).sort())
+            setCountries(allCountries)
         }
         if(bridge && flag === 1){
-            console.log(modalCountries)
-            setSelectedCountries([...selectedCountries, bridge])
-            setModalContries(modalCountries.filter((f) => f.name !== bridge))
+            setSelectedCountries(([...selectedCountries, bridge]).sort())
+            setModalContries(modalCountries.filter((f) => f !== bridge).sort())
             setFlag(0)
+            console.log(modalCountries.length)
         }
         if(bridge && flag === 2){
-            console.log(selectedCountries)
-            setModalContries([...modalCountries, bridge])
-            setSelectedCountries(selectedCountries.filter((f) => f !== bridge))
+            setModalContries(([...modalCountries, bridge]).sort())
+            setSelectedCountries(selectedCountries.filter((f) => f !== bridge).sort())
             setFlag(0)
+            console.log(selectedCountries.length)
+
         }
-        console.log(activeSeasons)
-    },[dispatch, allCountries, modalCountries, selectedCountries, bridge, flag, activeSeasons])
+        //modalCountries bucle infinito
+    },[dispatch, allCountries, selectedCountries, bridge, flag, activeSeasons, modalCountries])
 
 
     return(
@@ -173,10 +177,10 @@ const AddActivities = () => {
                             modalCountries.map((c) => {
                                 return (
                                     <option 
-                                    key={c.idCountry} 
-                                    value={c.name}
-                                    name={c.name} 
-                                    onClick={(e) => addCountry(e)}>{c.name}</option>)
+                                    key={c} 
+                                    value={c}
+                                    name={c} 
+                                    onClick={(e) => addCountry(e)}>{c}</option>)
                             })}
                         </select>
                     </div>
@@ -197,7 +201,7 @@ const AddActivities = () => {
                     }
                     </select>
                     
-
+                
                     <input type="submit" onClick={(e) => handleSubmit(e)} value="Add"/>
                 </form>
 

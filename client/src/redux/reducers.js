@@ -1,10 +1,11 @@
-import {GET_COUNTRIES, GET_COUNTRY_DETAILS, CHANGE_ORDER, FILTERS} from './actions'
+import {GET_COUNTRIES, GET_COUNTRY_DETAILS, CHANGE_ORDER, FILTERS, ACTIVITY_POST} from './actions'
 
 
 const initialState = {
     allCountries : [],
     countryDetails: {},
-    allFilters:{}
+    allFilters:{},
+    newActivity:{}
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -66,6 +67,11 @@ export default function rootReducer (state = initialState, action) {
                 ...state,
                 allFilters: action.payload
         }
+        case ACTIVITY_POST: 
+            return{
+                ...state,
+                newActivity: action.payload
+            }
         default: 
             return state
         

@@ -6,7 +6,20 @@ const { Op, where } = require('sequelize');
 const router = Router();
 
 router.post('/', async (req, res) => {
-    const {name, dificulty, duration, season, countriesIds} = req.body;
+    const {activity} = {...req.body}
+    const {name, duration, dificulty, countries, season} = {...activity}
+    console.log(name)
+    let selectedCountries = await Country.findAll({
+        where:{
+            name:{
+                [Op.in]:countries
+            }
+        }
+    })
+
+    let countriesIds = selectedCountries.map(c => { return c.id })
+    console.log(countriesIds, 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC')
+    
     console.log(countriesIds)
     try {
         let activity = await Activity.findOrCreate({
