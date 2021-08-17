@@ -6,7 +6,7 @@ const router = Router();
 router.post('/', async (req, res) => {
     const {activity} = {...req.body}
     const {name, duration, dificulty, countries, season} = {...activity}
-    console.log(name)
+
     let selectedCountries = await Country.findAll({
         where:{
             name:{
@@ -31,10 +31,7 @@ router.post('/', async (req, res) => {
                 }
             }
         })
-        console.log(activity[0])
-        console.log(country)
         await activity[0].addCountry(country)
-        console.log('llego hasta aca')
     } catch (error) {
         console.log(error)
     }

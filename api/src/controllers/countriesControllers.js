@@ -48,21 +48,35 @@ router.get('/', async (req, res) => {
                 }
             });
             allCountries = loaded
-
         } 
+        if(continent === 'DEFAULT' && activity === 'DEFAULT'){
+            filteredCountries = allCountries
+        }
+
         if(continent !== 'DEFAULT' && activity === 'DEFAULT'){
             filteredCountries = allCountries.filter((c) => {
                 if (c.continent === continent) return c
             })
         }
-
-        if(continent === 'DEFAULT' && activity === 'DEFAULT'){
-            filteredCountries = allCountries
+    
+        if(continent === 'DEFAULT' && activity !== 'DEFAULT'){
+            filteredCountries = allCountries.filter((c) => {
+                if(c.activities !== []) return c.activities.some((a) => a.name === activity)
+            })
         }
 
+        if(continent !== 'DEFAULT' && activity !== 'DEFAULT'){
+            filteredCountries = allCountries.filter((c) => {
+                if (c.continent === continent) {
+                    if(c.activities !== []) return c.activities.some((a) => a.name === activity)
+                }
+            })
+        }
         
         res.send(filteredCountries);
+
         console.log(req.query)
+
     } catch (error) {
         console.log(error);
     }
@@ -83,6 +97,7 @@ router.get('/:id', async (req, res) => {
                 model:Activity
             }
         })
+        console.log(country)
         res.send(country)
 
     } catch (error) {
