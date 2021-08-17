@@ -48,7 +48,7 @@ const CountryDetail = () => {
                                 <th>Name</th>
                                 <th>Dificulty</th>
                                 <th>Season</th>
-                                <th>Delete</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -61,7 +61,7 @@ const CountryDetail = () => {
                                         <td>{a.name} </td>
                                         <td>{a.dificulty}</td>
                                         <td>{a.season.join(", ")}</td>
-                                        <td><button className={styles.removeBtn}> x </button></td>
+
                                     </tr>)
                             }))      
                             : ( <div className={styles.activitiesItem}>
@@ -76,9 +76,6 @@ const CountryDetail = () => {
 
                         
                         
-                    </div>
-                    <div className={`${styles.content} ${styles.dContent}`}>
-                        <p>lalala</p>
                     </div>
                 </div>
                 

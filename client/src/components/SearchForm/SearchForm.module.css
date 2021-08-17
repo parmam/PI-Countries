@@ -1,8 +1,6 @@
-body{
-padding: 15px;
-}
+
 .container{
-    margin: auto;
+    margin: 10px auto 10px auto;
     min-height: 100x;
     max-height: 100px;
     min-width: 300px;
@@ -11,6 +9,7 @@ padding: 15px;
     background-color:rgb(57, 56, 56);
     display: flex;
     justify-content: center;
+    
 }
 .li{
     display: flex;
@@ -21,6 +20,7 @@ padding: 15px;
     display: flex;
     justify-content: center;
     margin: 0px 0px 15px 20px;
+    font-size: 20px;
 }
 .buttonCtn{
     width: auto;

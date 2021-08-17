@@ -1,0 +1,32 @@
+.nav{
+    height: 50px;
+    background-color:rgb(57, 56, 56);
+    border-bottom: rgb(54, 54, 54) 2px solid;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.buttonCtn{
+    width: 200px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.linkBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 80px;
+    background-color: rgb(57, 56, 56);
+    border:none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.linkBtn:hover{
+    background-color: rgb(84, 84, 84);
+}
