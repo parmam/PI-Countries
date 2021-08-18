@@ -1,11 +1,13 @@
-import {GET_COUNTRIES, GET_COUNTRY_DETAILS, ACTIVITY_GET, ACTIVITY_POST} from './actions'
+import AddActivities from '../components/AddActivities/AddActivities'
+import {GET_COUNTRIES, GET_COUNTRY_DETAILS, ACTIVITY_GET, ACTIVITY_POST, GET_MODAL_COUNTRIES} from './actions'
 
 
 const initialState = {
     allCountries : [],
     countryDetails: {},
     newActivity:{},
-    allActivities:[]
+    allActivities:[],
+    modalCountries:[]
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -66,6 +68,12 @@ export default function rootReducer (state = initialState, action) {
                 ...state,
                 allActivities: action.payload
             }
+        case GET_MODAL_COUNTRIES: {
+            return{
+                ...state,
+                modalCountries: action.payload
+            }
+        }
         default: 
             return state
         

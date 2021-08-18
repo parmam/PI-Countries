@@ -1,12 +1,12 @@
 import styles from './AddActivities.module.css';
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {activitiesPost} from '../../redux/actions'
+import {activitiesPost, getModalCountries} from '../../redux/actions'
 import { Link } from 'react-router-dom';
 
 
 const AddActivities = () => {
-    const allCountries = useSelector(store => store.allCountries);
+    const allCountries = useSelector(store => store.modalCountries);
 
     const dispatch = useDispatch();
     const [flag, setFlag] = useState(9);
@@ -73,6 +73,10 @@ const AddActivities = () => {
     }
 
     useEffect(() => {
+        if(flag === 9){
+            dispatch(getModalCountries())
+            setFlag(0)
+        }
         if(allCountries.length && !modalCountries.length){
             setModalContries(allCountries.map((m) => {return m.name}).sort())
         }
@@ -89,7 +93,7 @@ const AddActivities = () => {
             console.log(selectedCountries.length)
 
         }
-        //modalCountries bucle infinito
+
     },[dispatch, allCountries, selectedCountries, bridge, flag, activeSeasons, modalCountries])
 
 

@@ -9,9 +9,12 @@ const Home = () => {
 
     return (
         <React.Fragment>
-
-            <SearchForm />
-            <CountriesList />
+            <div className={styles.pageContainer}>
+                <div className={styles.wrap}>
+                    <SearchForm />
+                    <CountriesList />
+                </div>
+            </div>
 
         </React.Fragment>
     )

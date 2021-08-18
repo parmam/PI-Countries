@@ -9,6 +9,7 @@ import CountryDetail from './components/CountryDetail/CountryDetail';
 import Navbar from './components/Navbar/Navbar';
 import About from './components/About/About'
 import AddActivities from './components/AddActivities/AddActivities';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
 
@@ -21,6 +22,9 @@ const App = () => {
           <Route exact path="/add-activities" component={AddActivities}/>
           <Route exact path="/about" component={About}/>
           <Route exact path="/home" component={Home}/>
+          <div class="footerS">
+            <Footer/>
+          </div>
           <Route exact path="/" component={Welcome}/>
         </BrowserRouter>
         </Provider>

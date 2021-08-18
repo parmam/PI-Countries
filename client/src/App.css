@@ -1,4 +1,21 @@
+html{
+    height: 100%!important;
+}
+
+body{
+    min-height: 100%;
+    margin: 0
+}
+
 button, select{
     cursor: pointer;
     text-decoration: none !important;
+}
+
+.footerS{
+margin-top: auto;
+position:relative;
+left:0;
+bottom:0;
+right:0;
 }

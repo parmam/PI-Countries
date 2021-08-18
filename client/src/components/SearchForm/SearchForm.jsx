@@ -1,7 +1,7 @@
 import styles from './SearchForm.module.css'
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountries, activitiesGet} from '../../redux/actions';
+import { getCountries, activitiesGet, getModalCountries} from '../../redux/actions';
 import { useModal } from '../../hooks/useModal';
 import {Link} from 'react-router-dom'
 // import Modal from '../Modal/Modal';
@@ -25,7 +25,7 @@ const SearchForm = () => {
 
     
     const setDefaultCountries = () =>{
-
+        
     }
     const handleSearch = (e) => {
         e.preventDefault();
@@ -62,6 +62,7 @@ const SearchForm = () => {
     useEffect(() => {
 
         if(flag === 1) {
+            
             dispatch(getCountries(search, activityFilter, contienentFilter, alphabethicOrder, populationOrder))
             dispatch(activitiesGet())
             setFlag(0)
@@ -139,10 +140,10 @@ const SearchForm = () => {
                 >
                     <option value="DEFAULT">DEFAULT</option>
                     {
-                        activities.map((a) => {
-                            return(
-                                    <option value={a}>{a.toUpperCase()}</option>
-                                )
+                    activities.map((a) => {
+                        return(
+                                <option value={a}>{a.toUpperCase()}</option>
+                            )
                     })
                     }
                 </select>

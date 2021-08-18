@@ -5,6 +5,7 @@ export const GET_COUNTRY_DETAILS = 'GET_COUNTRY_DETAILS';
 export const CHANGE_ORDER = 'CHANGE_ORDER';
 export const ACTIVITY_POST = 'ACTIVITY_POST';
 export const ACTIVITY_GET = "ACTIVITY_GET";
+export const GET_MODAL_COUNTRIES = "GET_MODAL_COUNTRIES";
 
 export const getCountries = (search, activityFilter, contienentFilter, alphabethicOrder, populationOrder) => {
     return(dispatch) => {
@@ -21,6 +22,23 @@ export const getCountries = (search, activityFilter, contienentFilter, alphabeth
         })
     }
 }
+
+export const getModalCountries = () => {
+    return(dispatch) => {
+        let data = [];
+        axios.get(`http://localhost:3001/countries?name=&activity=DEFAULT&continent=DEFAULT`)
+        .then(response => {
+            console.log(data)
+            data = response.data
+            dispatch({  
+                type: GET_MODAL_COUNTRIES,
+                payload: data
+            })
+        })
+    }
+}
+
+
 export const getCountryDetails = (id) => {
     return (dispatch) => {
         let data = {}
