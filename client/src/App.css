@@ -10,6 +10,7 @@ body{
 button, select{
     cursor: pointer;
     text-decoration: none !important;
+
 }
 
 .footerS{
@@ -19,3 +20,12 @@ left:0;
 bottom:0;
 right:0;
 }
+
+select:hover, button:hover{
+    background-color: rgb(84, 84, 84);
+    border: rgb(84, 84, 84) 1px;
+    border-radius: 4px;
+}
+
+
+
