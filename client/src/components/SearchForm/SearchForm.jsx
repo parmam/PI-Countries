@@ -3,12 +3,13 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getCountries, activitiesGet} from '../../redux/actions';
 import { useModal } from '../../hooks/useModal';
-import Modal from '../Modal/Modal';
-import AddActivities from '../AddActivities/AddActivities';
+import {Link} from 'react-router-dom'
+// import Modal from '../Modal/Modal';
+// import AddActivities from '../AddActivities/AddActivities';
 
 
 const SearchForm = () => {
-    const [isOpenActivitiesModal, openActivitiesModal, closeActivitiesModal] = useModal(false)
+    // const [isOpenActivitiesModal, openActivitiesModal, closeActivitiesModal] = useModal(false)
     const [contienentFilter, setContinentFilter] = useState('DEFAULT');
     const [activityFilter, setActivityFilter] = useState('DEFAULT');
     const [populationOrder, setPopulationOrder] = useState('DEFAULT');
@@ -22,7 +23,11 @@ const SearchForm = () => {
     const allCountries = useSelector(store => store.allCountries)
     const dispatch = useDispatch()
 
-    const handleSubmit = (e) => {
+    
+    const setDefaultCountries = () =>{
+
+    }
+    const handleSearch = (e) => {
         e.preventDefault();
         dispatch(getCountries(search, activityFilter, contienentFilter))
     }
@@ -68,7 +73,7 @@ const SearchForm = () => {
     return (
         <React.Fragment>
             <div className={styles.container}>
-                <form onSubmit={(e) => handleSubmit(e)}>
+                <form onSubmit={(e) => handleSearch(e)}>
                     <label 
                         className={`${styles.formTitle}`}>Search country
                     </label>
@@ -82,13 +87,13 @@ const SearchForm = () => {
                         <button 
                             className={styles.formBtn} type="submit">Search
                         </button>
-                        <button
-                            onClick={() => openActivitiesModal()}
-                            className={styles.formBtn} type="button">Add Activities
-                        </button>
+                        <Link to="/add-activities">
+                            <button className={styles.formBtn} onClick={setDefaultCountries()} type="button">Add Activities </button>
+                        </Link>
+                            {/* onClick={() => openActivitiesModal()}
                         <Modal isOpen={isOpenActivitiesModal} closeModal={closeActivitiesModal}>
                             <AddActivities />
-                        </Modal>            
+                        </Modal>             */}
                     </div>
                 </form>
             </div>

@@ -3,20 +3,31 @@
     min-height: 500px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+}
+
+.formCtn{
+    border:  rgb(54, 54, 54) 2px solid;
+    background-color: rgb(83, 83, 83);
 }
 .formTitle{
     display: flex;
     justify-content: center;
 }
 .aForm{
+    min-width: 400px;
+    max-width: 800px;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 
+
+
 }
-.aForm > div {
+.formItems {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -44,8 +55,6 @@
     float: left;
     width: 30%;
     height: 25px;
-    background-color: white;
-
 }
 
 .buttonCtn{
@@ -53,9 +62,19 @@ width: 100%;
 min-height: 50px;
 max-height: 50px;
 display: flex;
-position: absolute;
-bottom: 1rem;
 justify-content: center;
+margin: 10px 0px 0px 0px ;
 
 }
 
+.formBtn{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 10px 10px 10px ;
+}
+.addBtn{
+    height: 21.9px;
+    margin: 14px 0px 0px 10px ;
+}

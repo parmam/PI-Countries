@@ -7,7 +7,8 @@ import Home from './components/Home/Home'
 import Welcome from './components/Welcome/Welcome';
 import CountryDetail from './components/CountryDetail/CountryDetail';
 import Navbar from './components/Navbar/Navbar';
-
+import About from './components/About/About'
+import AddActivities from './components/AddActivities/AddActivities';
 
 const App = () => {
 
@@ -17,6 +18,8 @@ const App = () => {
         <BrowserRouter>
           <Route path='/:s'component={Navbar}/>
           <Route exact path="/country/:id" component={CountryDetail}/>
+          <Route exact path="/add-activities" component={AddActivities}/>
+          <Route exact path="/about" component={About}/>
           <Route exact path="/home" component={Home}/>
           <Route exact path="/" component={Welcome}/>
         </BrowserRouter>

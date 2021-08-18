@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Navbar.module.css'
-
+import {Link} from 'react-router-dom'
 const Navbar = () => {
 
 
@@ -9,8 +9,13 @@ const Navbar = () => {
         <React.Fragment>
                 <div className={styles.nav}>
                     <div className={styles.buttonCtn}>
-                        <button className={styles.linkBtn}>Home</button>
-                        <button className={styles.linkBtn}>About</button>
+                        <Link to="/home">
+                            <button className={styles.linkBtn}>Home</button>
+                        </Link>
+                        <Link to="/about">
+                            <button className={styles.linkBtn}>About</button>                       
+                        </Link>
+
                     </div>
                 </div>
         </React.Fragment>

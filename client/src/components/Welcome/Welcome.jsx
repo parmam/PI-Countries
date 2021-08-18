@@ -7,9 +7,9 @@ const Welcome = () => {
         <React.Fragment>
                 <div className={styles.container}>
 
-                <p>Welcome</p>
+                <p className={styles.title}>Welcome</p>
                 <Link to="home">                
-                    <button type="button"> Go to CountriesApp </button>
+                    <button className={styles.btn} type="button"> Go to CountriesApp </button>
                 </Link>
                 </div>
 

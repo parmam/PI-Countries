@@ -6,6 +6,8 @@ const Modal = ({children, isOpen, closeModal}) => {
 
 const handlePropagation = (e) => e.stopPropagation()
 
+
+
     return (
         <React.Fragment>
             <div className={`${styles.container} ${isOpen && `${styles.opened}`}`} onClick={closeModal}>
